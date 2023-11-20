@@ -74,7 +74,7 @@
             }
             this.value = inputValue;
         });
-    </script>
+    </script> 
 @endpush
 
 @endsection

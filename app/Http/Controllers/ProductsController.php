@@ -52,7 +52,7 @@ class ProductsController extends Controller
     }
 
     //Actualizar productos
-    public function update(Request $request, Product $product)
+    public function update(Request $request, Producto $product)
     {
         // Validación de datos
         $request->validate([
@@ -77,6 +77,5 @@ class ProductsController extends Controller
         // Redirigir a la vista o ruta deseada después de la actualización
         return redirect()->route('products.index')->with('success', 'Producto actualizado exitosamente');
     }
-
 }
 

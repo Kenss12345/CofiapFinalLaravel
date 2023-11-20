@@ -7,11 +7,13 @@ use App\Models\User;
 
 class RegisterController extends Controller {
     
+    //Crear nuevo usuario
     public function create() {
         
         return view('auth.register');
     }
 
+    //Almacenar Uusuario
     public function store() {
 
         $this->validate(request(), [

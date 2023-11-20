@@ -51,5 +51,4 @@ Route::post('/products/create', [App\Http\Controllers\ProductsController::class,
     ->name('products.store');
 
 //Modificar Producto
-Route::put('/products/{product}', 'ProductsController@update')
-    ->name('products.update');
+Route::put('/products/{product}', [ProductsController::class, 'update'])->name('products.update');

@@ -65,6 +65,7 @@
         const editButtons = document.querySelectorAll('.edit-button');
         const editModal = document.getElementById('editModal');
         const closeModalButton = document.getElementById('closeModal');
+        const editForm = document.getElementById('editForm');
 
         editButtons.forEach(button => {
             button.addEventListener('click', function (event) {
@@ -72,7 +73,6 @@
 
                 // Obtiene el ID del producto desde el botón de edición
                 const productId = button.getAttribute('data-product-id');
-                const editForm = document.getElementById('editForm');
                 editForm.action = editForm.action.replace('__product_id__', productId);
 
                 // Puedes cargar los datos del producto para prellenar el formulario aquí
@@ -112,12 +112,34 @@
                     <input type="number" id="editPrecio" name="precio" class="w-full bg-gray-200 p-2 text-lg rounded placeholder-gray-900" required>
                 </div>
 
-                <!-- Agrega más campos de edición según sea necesario -->
+                <div class="my-2">
+                    <label for="editCantidadProducto" class="block text-sm font-medium text-gray-700">Cantidad Producto</label>
+                    <input type="number" id="editCantidadProducto" name="cantidadProducto" class="w-full bg-gray-200 p-2 text-lg rounded placeholder-gray-900" required>
+                </div>
+
+                <div class="my-2">
+                    <label for="editLoteProduccion" class="block text-sm font-medium text-gray-700">Lote Produccion</label>
+                    <input type="text" id="editLoteProduccion" name="loteProduccion" class="w-full bg-gray-200 p-2 text-lg rounded placeholder-gray-900" required>
+                </div>
+
+                <div class="my-2">
+                    <label for="editFechaCaducidad" class="block text-sm font-medium text-gray-700">Fecha Caducidad</label>
+                    <input type="date" id="editFechaCaducidad" name="fechaCaducidad" class="w-full bg-gray-200 p-2 text-lg rounded placeholder-gray-900" required>
+                </div>
+
+                <div class="my-2">
+                    <label for="editClasificacion" class="block text-sm font-medium text-gray-700">Clasificacion</label>
+                    <input type="text" id="editClasificacion" name="clasificacion" class="w-full bg-gray-200 p-2 text-lg rounded placeholder-gray-900" required>
+                </div>
 
                 <!-- Botones del formulario -->
                 <div class="flex justify-between mt-4">
-                    <button type="submit" class="bg-blue-500 text-white px-3 py-1 rounded-sm">Guardar Cambios</button>
-                    <button id="closeModal" class="bg-gray-500 text-white px-3 py-1 rounded-sm">Cerrar</button>
+                    <button 
+                    type="submit" class="bg-blue-500 text-white px-3 py-1 rounded-sm">Guardar Cambios
+                    </button>
+                    <button 
+                    id="closeModal" class="bg-gray-500 text-white px-3 py-1 rounded-sm">Cerrar
+                    </button>
                 </div>
             </form>
         </div>
