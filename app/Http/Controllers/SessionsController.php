@@ -16,7 +16,7 @@ class SessionsController extends Controller {
         
         if(auth()->attempt(request(['email', 'password'])) == false) {
             return back()->withErrors([
-                'message' => 'The email or password is incorrect, please try again',
+                'message' => 'El correo o la contraseña es incorrecta, por favor intenta de nuevo',
             ]);
 
         } else {
@@ -24,7 +24,7 @@ class SessionsController extends Controller {
             if(auth()->user()->role == 'admin') {
                 return redirect()->route('admin.index');
             } else {
-                return redirect()->to('/');
+                return redirect()->to('/products');
             }
         }
     }
