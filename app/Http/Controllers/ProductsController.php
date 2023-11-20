@@ -77,5 +77,12 @@ class ProductsController extends Controller
         // Redirigir a la vista o ruta deseada después de la actualización
         return redirect()->route('products.index')->with('success', 'Producto actualizado exitosamente');
     }
+
+    public function destroy(Producto $product)
+    {
+        $product->delete();
+
+        return redirect()->route('products.index')->with('success', 'Producto eliminado exitosamente');
+    }
 }
 

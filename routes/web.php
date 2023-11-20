@@ -52,3 +52,5 @@ Route::post('/products/create', [App\Http\Controllers\ProductsController::class,
 
 //Modificar Producto
 Route::put('/products/{product}', [ProductsController::class, 'update'])->name('products.update');
+
+Route::delete('/products/{product}', [ProductsController::class, 'destroy'])->name('products.destroy');

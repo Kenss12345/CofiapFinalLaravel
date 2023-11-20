@@ -37,9 +37,13 @@
             <td class="p-3 text-center">{{$row->created_at}}</td>
             <td class="p-3 text-center">{{$row->updated_at}}</td>
             <td class="p-3">
-                <button class="bg-red-500 text-white px-3 py-1 rounded-sm">
-                    <i class="fas fa-trash"></i> Eliminar
-                </button>
+                <form id="deleteForm{{ $row->id }}" action="{{ route('products.destroy', ['product' => $row->id]) }}" method="POST" class="inline">
+                    @csrf
+                    @method('DELETE')
+                    <button class="bg-red-500 text-white px-3 py-1 rounded-sm delete-button" data-product-id="{{ $row->id }}">
+                        <i class="fas fa-trash"></i> Eliminar
+                    </button>
+                </form>
                 <button 
                 class="bg-green-500 text-white px-3 py-1 rounded-sm edit-button" 
                 data-product-id="{{ $row->id }}">
@@ -58,6 +62,8 @@
 <!--@push('scripts')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-e6YSSRtje1FKRsnOMY87I3n5ceMFOENJdX8b39+z8CeB5WZ1YlFxBZkFF94x2GAWp" crossorigin="anonymous">
 @endpush -->
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
     // Agrega esto en tu archivo Blade o script JavaScript
@@ -87,6 +93,38 @@
         closeModalButton.addEventListener('click', function () {
             // Cierra el modal
             editModal.classList.add('hidden');
+        });
+    });
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const deleteButtons = document.querySelectorAll('.delete-button');
+
+        deleteButtons.forEach(button => {
+            button.addEventListener('click', function (event) {
+                event.preventDefault();
+
+                // Obtiene el ID del producto desde el botón de eliminación
+                const productId = button.getAttribute('data-product-id');
+
+                // Utiliza SweetAlert2 para mostrar la ventana emergente de confirmación
+                Swal.fire({
+                    title: '¿Estás seguro?',
+                    text: 'No podrás revertir esto',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Sí, eliminarlo'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Si el usuario confirma, envía el formulario de eliminación
+                        const deleteForm = document.getElementById('deleteForm' + productId);
+                        deleteForm.submit();
+                    }
+                });
+            });
         });
     });
 </script>
