@@ -10,26 +10,27 @@ use Illuminate\Support\Carbon;
 class ProductsController extends Controller
 {
     //Lista de productos
-    public function index(){
-     
+    public function index()
+    {
         $products = Producto::all();
         return view('products.index', compact('products'));
     }
 
     //Crear productos
-    public function create(){
+    public function create()
+    {
         return view('products.create');
     }
 
     //Almacenar productos
-    public function store(Request $request){
-
+    public function store(Request $request)
+    {
         $request->validate([
             'nombre' => 'required',
             'precio' => 'required|numeric',
             'cantidadProducto' => 'required|numeric',
             'loteProduccion' => 'required',
-            'fechaCaducidad' => 'required|date_format:d/m/Y', // Asegúrate de que la fecha cumple con el formato esperado
+            'fechaCaducidad' => 'required|date_format:Y-m-d', // Formato ajustado a Y-m-d
             'clasificacion' => 'nullable',
         ]);
 
@@ -39,11 +40,7 @@ class ProductsController extends Controller
         $product->precio = $request->precio;
         $product->cantidadProducto = $request->cantidadProducto;
         $product->loteProduccion = $request->loteProduccion;
-
-        // Convierte la fecha al formato correcto antes de almacenarla
-        $fechaCaducidad = Carbon::createFromFormat('d/m/Y', $request->fechaCaducidad)->format('Y-m-d');
-        $product->fechaCaducidad = $fechaCaducidad;
-
+        $product->fechaCaducidad = $request->fechaCaducidad; // Ya está en el formato correcto
         $product->clasificacion = $request->clasificacion;
 
         $product->save();
@@ -51,7 +48,7 @@ class ProductsController extends Controller
         return redirect()->route('products.index');
     }
 
-    //Actualizar productos
+    //Actualizar producto
     public function update(Request $request, Producto $product)
     {
         // Validación de datos
@@ -78,6 +75,7 @@ class ProductsController extends Controller
         return redirect()->route('products.index')->with('success', 'Producto actualizado exitosamente');
     }
 
+    //Eliminar Producto
     public function destroy(Producto $product)
     {
         $product->delete();

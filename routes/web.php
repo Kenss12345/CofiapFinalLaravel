@@ -38,7 +38,6 @@ Route::get('/admin', [AdminController::class, 'index'])
     ->name('admin.index');
 
 // Productos
-
 //Lista de productos
 Route::get('/products', [App\Http\Controllers\ProductsController::class, 'index'])
     ->name('products.index');
@@ -51,6 +50,17 @@ Route::post('/products/create', [App\Http\Controllers\ProductsController::class,
     ->name('products.store');
 
 //Modificar Producto
-Route::put('/products/{product}', [ProductsController::class, 'update'])->name('products.update');
+Route::put('/products/{product}', [ProductsController::class, 'update'])
+    ->name('products.update');
 
-Route::delete('/products/{product}', [ProductsController::class, 'destroy'])->name('products.destroy');
+//Eliminar Producto
+Route::delete('/products/{product}', [ProductsController::class, 'destroy'])
+    ->name('products.destroy');
+
+//Registrar venta
+Route::get('/sales/create', [App\Http\Controllers\SalesController::class, 'create'])
+    ->name('sales.create');
+
+Route::post('/sales', [App\Http\Controllers\SalesController::class, 'store'])
+    ->name('sales.store');
+

@@ -65,6 +65,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+<!--Script para la ventana emergente de modificar -->
 <script>
     // Agrega esto en tu archivo Blade o script JavaScript
     document.addEventListener('DOMContentLoaded', function () {
@@ -97,6 +98,7 @@
     });
 </script>
 
+<!--Script para la ventana emergente de eliminar-->
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const deleteButtons = document.querySelectorAll('.delete-button');
@@ -129,6 +131,7 @@
     });
 </script>
 
+<!--Modal de la ventana emergente de modificar-->
 <div id="editModal" class="modal hidden fixed inset-0 bg-gray-500 bg-opacity-75 overflow-y-auto h-full w-full z-50">
     <div class="modal-container mx-auto sm:px-6 lg:px-8 p-8">
         <!-- Contenido del modal aquí -->

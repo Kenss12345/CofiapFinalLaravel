@@ -42,6 +42,8 @@
         <a href="{{ route('login.destroy') }}" class="font-bold py-3 px-4 rounded-md bg-red-500 hover:bg-red-600 ml-4">Salir</a>
         </li>
 
+        <a href="{{ route('sales.create') }}" class="text-gray-700 hover:text-blue-500 px-4 py-2">Ventas</a>
+
         <!-- Si NO se loguea correctamente se muestra los botones: Ingresar y registrarse-->
         @else
         <li class="mx-6">
