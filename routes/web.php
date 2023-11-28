@@ -5,6 +5,8 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionsController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\PedidosController;
+use App\Http\Controllers\ClientesController;
 
 
 
@@ -57,10 +59,24 @@ Route::put('/products/{product}', [ProductsController::class, 'update'])
 Route::delete('/products/{product}', [ProductsController::class, 'destroy'])
     ->name('products.destroy');
 
-//Registrar venta
-Route::get('/sales/create', [App\Http\Controllers\SalesController::class, 'create'])
-    ->name('sales.create');
+//Registrar pedido
+// Ruta para mostrar el formulario de registro de pedidos
+Route::get('/pedidos/create', [PedidosController::class, 'create'])
+    ->name('pedidos.create');
 
-Route::post('/sales', [App\Http\Controllers\SalesController::class, 'store'])
-    ->name('sales.store');
+// Ruta para procesar el formulario de registro de pedidos
+Route::post('/pedidos/create', [PedidosController::class, 'store'])
+    ->name('pedidos.store');
 
+Route::get('/pedidos', [PedidosController::class, 'index'])
+    ->name('pedidos.index');
+
+// Ruta para mostrar el formulario de registro de clientes
+Route::get('/clientes', [ClientesController::class, 'index'])
+    ->name('clientes.index');
+    
+Route::get('/clientes/create', [ClientesController::class, 'create'])
+    ->name('clientes.create');
+    
+Route::post('/clientes/store', [ClientesController::class, 'store'])
+    ->name('clientes.store');
