@@ -1,61 +1,58 @@
 @extends('layouts.app')
 
-@section('title', 'Productos')
+@section('title', 'Listado de Productos')
 
 @section('content')
-<br>
-<br>
+<div class="container mx-auto mt-8">
+    <h2 class="text-2xl font-bold mb-4">Listado de Productos</h2>
 
-<div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-
-    <table class="table-fixed w-full">
-      <thead>
-
-        <tr class="bg-green-500 text-white">
-          <th class="w-20 py-4 ...">ID</th>
-          <th class="w-1/8 py-4 ...">Nombres</th>
-          <th class="w-1/16 py-4 ...">Precio</th>
-          <th class="w-1/16 py-4 ...">Cantidad Producto</th>
-          <th class="w-1/16 py-4 ...">Lote Produccion</th>
-          <th class="w-1/16 py-4 ...">Fecha Caducidad</th>
-          <th class="w-1/16 py-4 ...">Creado</th>
-          <th class="w-1/16 py-4 ...">Actualizado</th>
-          <th class="w-28 py-4 ...">Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        @foreach($products as $row) <!--Bucle-->
-
-        
-        <tr>
-            <td class="py-3 px-6">{{$row->id}}</td>
-            <td class="p-3">{{$row->nombre}}</td>
-            <td class="p-3 text-center">{{$row->precio}}</td>
-            <td class="p-3 text-center">{{$row->cantidadProducto}}</td>
-            <td class="p-3 text-center">{{$row->loteProduccion}}</td>
-            <td class="p-3 text-center">{{$row->fechaCaducidad}}</td>
-            <td class="p-3 text-center">{{$row->created_at}}</td>
-            <td class="p-3 text-center">{{$row->updated_at}}</td>
-            <td class="p-3">
-                <form id="deleteForm{{ $row->id }}" action="{{ route('products.destroy', ['product' => $row->id]) }}" method="POST" class="inline">
-                    @csrf
-                    @method('DELETE')
-                    <button class="bg-red-500 text-white px-3 py-1 rounded-sm delete-button" data-product-id="{{ $row->id }}">
-                        <i class="fas fa-trash"></i> Eliminar
-                    </button>
-                </form>
-                <button 
-                class="bg-green-500 text-white px-3 py-1 rounded-sm edit-button" 
-                data-product-id="{{ $row->id }}">
-                  <i class="fas fa-pen"></i> Editar
-                </button>
-            </td>
+    <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-6">
+        <table class="min-w-full table-auto border border-gray-300">
+            <thead>
+                <tr class="bg-green-500 text-white">
+                    <th class="py-2 px-4 border-b">ID</th>
+                    <th class="py-2 px-4 border-b">Nombres</th>
+                    <th class="py-2 px-4 border-b">Precio</th>
+                    <th class="py-2 px-4 border-b">Cantidad Producto</th>
+                    <th class="py-2 px-4 border-b">Lote Produccion</th>
+                    <th class="py-2 px-4 border-b">Fecha Caducidad</th>
+                    <th class="py-2 px-4 border-b">Creado</th>
+                    <th class="py-2 px-4 border-b">Actualizado</th>
+                    <th class="py-2 px-4 border-b">Acciones</th>
                 </tr>
-                
-        @endforeach
-        
-      </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @forelse ($products as $product)
+                    <tr>
+                        <td class="py-2 px-4 border-b">{{ $product->id }}</td>
+                        <td class="py-2 px-4 border-b">{{ $product->nombre }}</td>
+                        <td class="py-2 px-4 border-b text-center">{{ $product->precio }}</td>
+                        <td class="py-2 px-4 border-b text-center">{{ $product->cantidadProducto }}</td>
+                        <td class="py-2 px-4 border-b text-center">{{ $product->loteProduccion }}</td>
+                        <td class="py-2 px-4 border-b text-center">{{ $product->fechaCaducidad }}</td>
+                        <td class="py-2 px-4 border-b text-center">{{ $product->created_at }}</td>
+                        <td class="py-2 px-4 border-b text-center">{{ $product->updated_at }}</td>
+                        <td class="py-2 px-4 border-b">
+                            <form id="deleteForm{{ $product->id }}" action="{{ route('products.destroy', ['product' => $product->id]) }}" method="POST" class="inline">
+                                @csrf
+                                @method('DELETE')
+                                <button class="bg-red-500 text-white px-3 py-1 rounded-sm delete-button" data-product-id="{{ $product->id }}">
+                                    <i class="fas fa-trash"></i> Eliminar
+                                </button>
+                            </form>
+                            <button class="bg-green-500 text-white px-3 py-1 rounded-sm edit-button" data-product-id="{{ $product->id }}">
+                                <i class="fas fa-pen"></i> Editar
+                            </button>
+                        </td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="9" class="py-2 px-4 border-b text-center">No hay productos registrados.</td>
+                    </tr>
+                @endforelse
+            </tbody>
+        </table>
+    </div>
 </div>
 @endsection
 

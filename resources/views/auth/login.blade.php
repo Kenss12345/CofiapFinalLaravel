@@ -28,11 +28,11 @@ rounded-lg shadow-lg">
     <button type="submit" class="rounded-md bg-green-500 w-full text-lg
     text-white font-semibold p-2 my-3 hover:bg-green-600">Enviar</button>
 
-    <p class="text-xs text-center mt-6 mx-auto max-w-xl">
+    <!--<p class="text-xs text-center mt-6 mx-auto max-w-xl">
       ¿No tienes una cuenta?
       <a href="{{ route('register.index') }}" class="mt-1 inline-block text-xs underline 
       text-blue-500 hover:text-blue-700">Regístrate</a>
-    </p>
+    </p>-->
 
   </form>
 

@@ -46,7 +46,7 @@ class PedidosController extends Controller
         ]);
 
         // Redirige a donde desees después de almacenar el pedido
-        return redirect()->route('pedidos.create')->with('success', 'Pedido registrado exitosamente');
+        return redirect()->route('pedidos.index')->with('success', 'Pedido registrado exitosamente');
     }
 
     public function index()
